@@ -20,6 +20,8 @@ class Courses(models.Model):
     no_of_reviews = models.PositiveIntegerField(default=0)
     thumbnail = models.ImageField(blank=True, null=True, upload_to='thumbnail')
     category = models.ForeignKey(Category, on_delete=models.CASCADE, blank=True, null=True)
+    course_length = models.DecimalField(blank=True, null=True, decimal_places=2, max_digits=2)
+    minor_description = models.CharField(max_length=300, blank=True, null=True)
     
     requirements = models.TextField(blank=True, null=True)
     course_by = models.ForeignKey(CustomUser,on_delete=models.CASCADE)
