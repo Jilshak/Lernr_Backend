@@ -6,7 +6,7 @@ class CustomUser(AbstractUser):
     email = models.EmailField(unique=True, max_length=100)
     username = models.CharField(max_length=200, blank=True, null=True)
     phone_number = models.CharField(max_length=20, null=True, blank=True)
-    profile_image = models.ImageField(blank=True, upload_to='profile')
+    profile_image = models.ImageField(blank=True, null=True, upload_to='profile')
     is_instructor = models.BooleanField(default=False)
     is_user = models.BooleanField(default=True)
     is_blocked = models.BooleanField(default=False)
