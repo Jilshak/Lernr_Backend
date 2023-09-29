@@ -43,3 +43,10 @@ class CartItem(models.Model):
     
     def __str__(self):
         return f'{self.user.email}-{self.on_course.title}'
+    
+class CoursesBought(models.Model):
+    user = models.ForeignKey(CustomUser, on_delete=models.CASCADE)
+    course_id = models.ForeignKey(Courses, on_delete=models.CASCADE)
+    
+    def __str__(self):
+        return f'{self.user.email}-{self.course_id.title}'

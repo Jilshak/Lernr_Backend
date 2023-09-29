@@ -24,3 +24,9 @@ class CategorySerializer(ModelSerializer):
     class Meta:
         fields = '__all__'
         model = Category
+        
+        
+class CoursesBoughtSerializer(ModelSerializer):
+    class Meta:
+        fields = '__all__'
+        model = CoursesBought
