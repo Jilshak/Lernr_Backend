@@ -34,6 +34,7 @@ ALLOWED_HOSTS = ["*"]
 # Application definition
 
 INSTALLED_APPS = [
+    "daphne",
     'django.contrib.admin',
     'django.contrib.auth',
     'django.contrib.contenttypes',
@@ -43,6 +44,7 @@ INSTALLED_APPS = [
     'rest_framework',
     'users',
     'courses',
+    'community',
     "corsheaders",
 ]
 
@@ -82,8 +84,13 @@ TEMPLATES = [
     },
 ]
 
-WSGI_APPLICATION = 'lernr.wsgi.application'
+ASGI_APPLICATION = 'lernr.asgi.application'
 
+CHANNEL_LAYERS = {
+    "default": {
+        "BACKEND": "channels.layers.InMemoryChannelLayer"
+    }
+}
 
 # Database
 # https://docs.djangoproject.com/en/4.2/ref/settings/#databases
