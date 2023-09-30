@@ -39,12 +39,11 @@ class ChatConsumer(AsyncWebsocketConsumer):
         data = json.loads(text_data)
         message = data["message"]
         sender_username = data["sender_username"]
-        receiver_id = data['receiver_id']
 
-        print("This is the receiver id: ", receiver_id)
+       
 
         await self.save_message(
-            sender=sender_username, receiver=receiver_id, message=message, thread_name=self.room_group_name
+            sender=sender_username, message=message, thread_name=self.room_group_name
         )
 
         print("This is the channel group name: ", self.room_group_name)
@@ -56,7 +55,6 @@ class ChatConsumer(AsyncWebsocketConsumer):
                 "type": "chat_message",
                 "message": message,
                 "senderUsername": sender_username,
-                "receiver_id": receiver_id,
             },
         )
 
@@ -65,7 +63,6 @@ class ChatConsumer(AsyncWebsocketConsumer):
 
         message = event["message"]
         username = event["senderUsername"]
-        receiver = event["receiver_id"]
 
         await self.send(
             text_data=json.dumps(
@@ -73,16 +70,14 @@ class ChatConsumer(AsyncWebsocketConsumer):
                 {
                     "message": message,
                     "senderUsername": username,
-                    "receiver_id": receiver,
                 }
             ),
 
         )
 
     @database_sync_to_async
-    def save_message(self, sender, receiver, message, thread_name):
-        receiver_instance = CustomUser.objects.get(id=int(receiver))
-        user_instance = CustomUser.objects.get(username=sender)
+    def save_message(self, sender, message, thread_name):
+        user_instance = CustomUser.objects.get(id=sender)
 
         Message.objects.create(
-            sender=user_instance, receiver=receiver_instance, message=message, thread_name=thread_name)
+            sender=user_instance, message=message, thread_name=thread_name)
