@@ -45,6 +45,7 @@ INSTALLED_APPS = [
     'users',
     'courses',
     'community',
+    'payments',
     "corsheaders",
 ]
 
@@ -189,3 +190,8 @@ MEDIA_URL = '/media/'
 MEDIA_ROOT = os.path.join(BASE_DIR, 'media')
 CORS_ALLOW_ALL_ORIGINS = True
 AUTH_USER_MODEL = "users.CustomUser"
+
+
+SITE_URL = 'http://localhost:5173/'
+
+STRIPE_SECRET_KEY = 'sk_test_51NviVdSGOR1waZmR2aNwRVSYDZ3FdeGmzlLT8sGHL11qmRokKX6x8mhf9I18JnmkeMQ3wGJu8zUu9pTdgtZP0DoR00GCSUTJ7q'
