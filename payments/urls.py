@@ -1,7 +1,6 @@
 from django.urls import path
-from .views import StripeCheckoutView
-
+from .views import create_checkout_session
 
 urlpatterns = [
-    path(r'test-payment/', StripeCheckoutView.as_view()),
+    path('test', create_checkout_session)
 ]

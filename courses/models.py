@@ -24,6 +24,10 @@ class Courses(models.Model):
     course_length = models.DecimalField(blank=True, null=True, decimal_places=2, max_digits=5)
     minor_description = models.CharField(max_length=300, blank=True, null=True)
     
+    # payment
+    stripe_product_id = models.CharField(max_length=255, blank=True, null=True)
+    
+    
     requirements = models.TextField(blank=True, null=True)
     course_by = models.ForeignKey(CustomUser,on_delete=models.CASCADE)
     

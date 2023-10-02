@@ -1,36 +1,29 @@
-from django.conf import settings
-from rest_framework.views import APIView
 import stripe
-from rest_framework.response import Response
-from rest_framework import status
-from django.shortcuts import redirect
-
-stripe.api_key = settings.STRIPE_SECRET_KEY
+from django.conf import settings
+from django.http import JsonResponse
+from django.views.decorators.csrf import csrf_exempt
 
 
-class StripeCheckoutView(APIView):
-    def post(self, request):
-        
+@csrf_exempt
+def create_checkout_session(request):
+    if request.method == 'GET':
+        domain_url = 'http://localhost:8000/'
+        stripe.api_key = settings.STRIPE_SECRET_KEY
         try:
             checkout_session = stripe.checkout.Session.create(
+                success_url=domain_url + 'success?session_id={CHECKOUT_SESSION_ID}',
+                cancel_url=domain_url + 'cancelled/',
+                payment_method_types=['card'],
+                mode='payment',
                 line_items=[
                     {
-                        'price': 'price_1NwMcJSGOR1waZmRR5JwwqwI',
+                        'name': 'T-shirt',
                         'quantity': 1,
-                    },
-                ],
-                payment_method_types = ['card',],
-                mode='payment',
-                success_url=settings.SITE_URL + '/?success=true&session_id={CHECKOUT_SESSION_ID}',
-                cancel_url=settings.SITE_URL + '/?canceled=true',
+                        'currency': 'usd',
+                        'amount': '2000',
+                    }
+                ]
             )
-            return redirect(checkout_session.url)
-        except:
-            return Response(
-                {
-                    'error': 'something went wrong while createing the stripe checkout session'
-                },
-                status=status.HTTP_500_INTERNAL_SERVER_ERROR
-            )
-
-        
+            return JsonResponse({'sessionId': checkout_session['id']})
+        except Exception as e:
+            return JsonResponse({'error': str(e)})
