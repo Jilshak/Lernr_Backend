@@ -1,6 +1,6 @@
 from django.urls import path
-from .views import test_payment
+from .views import create_payment_session
 
 urlpatterns = [
-    path('test/', test_payment)
+    path('stripe/', create_payment_session)
 ]
