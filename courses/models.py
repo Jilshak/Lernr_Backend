@@ -23,6 +23,7 @@ class Courses(models.Model):
     category = models.ForeignKey(Category, on_delete=models.CASCADE, blank=True, null=True)
     course_length = models.DecimalField(blank=True, null=True, decimal_places=2, max_digits=5)
     minor_description = models.CharField(max_length=300, blank=True, null=True)
+    what_you_learn = models.TextField(blank=True, null=True)
     
     # payment
     stripe_product_id = models.CharField(max_length=255, blank=True, null=True)
@@ -38,6 +39,7 @@ class Reviews(models.Model):
     review_by = models.ForeignKey(CustomUser, on_delete=models.CASCADE)
     review = models.TextField()
     course = models.ForeignKey(Courses, on_delete=models.CASCADE)
+    stars = models.IntegerField(default=1, blank=True, null=True)
     
     def __str__(self):
         return f'{self.review_by.email}-{self.course.title}'
