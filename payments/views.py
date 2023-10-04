@@ -3,7 +3,7 @@ from django.conf import settings
 from rest_framework.response import Response
 from rest_framework import status
 from rest_framework.decorators import api_view
-from courses.models import Courses, CoursesBought
+from courses.models import Courses, CoursesBought, CartItem
 from users.models import CustomUser
 
 
@@ -117,6 +117,11 @@ def create_cart_payment_session(request):
         
         for course_id in course_ids:
             CoursesBought.objects.create(user=user, course_id=Courses.objects.get(id=course_id))
+        
+        for course_id in course_ids:
+            CartItem.objects.filter(user=user, on_course=course_id).delete()
+            
+        
 
         return Response(
             status=status.HTTP_200_OK,
