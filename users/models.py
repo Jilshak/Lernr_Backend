@@ -11,6 +11,7 @@ class CustomUser(AbstractUser):
     is_user = models.BooleanField(default=True)
     is_blocked = models.BooleanField(default=False)
     is_verified = models.BooleanField(default=False)
+    is_authorized = models.BooleanField(default=True)
     
     
     USERNAME_FIELD = 'email'
