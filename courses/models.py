@@ -28,6 +28,8 @@ class Courses(models.Model):
     # payment
     stripe_product_id = models.CharField(max_length=255, blank=True, null=True)
     
+    # video
+    video = models.CharField(max_length=255, blank=True, null=True)
     
     requirements = models.TextField(blank=True, null=True)
     course_by = models.ForeignKey(CustomUser,on_delete=models.CASCADE)
@@ -54,6 +56,7 @@ class CartItem(models.Model):
 class CoursesBought(models.Model):
     user = models.ForeignKey(CustomUser, on_delete=models.CASCADE)
     course_id = models.ForeignKey(Courses, on_delete=models.CASCADE)
+    progress = models.IntegerField(blank=True, null=True, default=0)
     
     def __str__(self):
         return f'{self.user.email}-{self.course_id.title}'
