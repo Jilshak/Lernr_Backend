@@ -25,6 +25,8 @@ class Courses(models.Model):
     minor_description = models.CharField(max_length=300, blank=True, null=True)
     what_you_learn = models.TextField(blank=True, null=True)
     
+    created_at = models.DateField(auto_now_add=True, null=True, blank=True)
+    
     # payment
     stripe_product_id = models.CharField(max_length=255, blank=True, null=True)
     
@@ -42,6 +44,7 @@ class Reviews(models.Model):
     review = models.TextField()
     course = models.ForeignKey(Courses, on_delete=models.CASCADE)
     stars = models.IntegerField(default=1, blank=True, null=True)
+    created_at = models.DateField(auto_now_add=True, blank=True, null=True)
     
     def __str__(self):
         return f'{self.review_by.email}-{self.course.title}'
@@ -57,6 +60,10 @@ class CoursesBought(models.Model):
     user = models.ForeignKey(CustomUser, on_delete=models.CASCADE)
     course_id = models.ForeignKey(Courses, on_delete=models.CASCADE)
     progress = models.IntegerField(blank=True, null=True, default=0)
+    created_at = models.DateField(auto_now_add=True, blank=True, null=True)
     
     def __str__(self):
         return f'{self.user.email}-{self.course_id.title}'
+    
+
+    
