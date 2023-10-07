@@ -24,18 +24,28 @@ class Courses(models.Model):
     course_length = models.DecimalField(blank=True, null=True, decimal_places=2, max_digits=5)
     minor_description = models.CharField(max_length=300, blank=True, null=True)
     what_you_learn = models.TextField(blank=True, null=True)
+    offer_price = models.CharField(blank=True, null=True, max_length=200)
+    unlist_course = models.BooleanField(blank=True, null=True, default=False)
     
     created_at = models.DateField(auto_now_add=True, null=True, blank=True)
     
     # payment
     stripe_product_id = models.CharField(max_length=255, blank=True, null=True)
     
-    # video
-    video = models.CharField(max_length=255, blank=True, null=True)
-    
+    # requirements
     requirements = models.TextField(blank=True, null=True)
-    course_by = models.ForeignKey(CustomUser,on_delete=models.CASCADE)
     
+    course_by = models.ForeignKey(CustomUser, on_delete=models.CASCADE)
+    
+    def __str__(self):
+        return self.title
+
+class CourseVideo(models.Model):
+    course = models.ForeignKey(Courses, on_delete=models.CASCADE)
+    video_url = models.URLField()
+    title = models.CharField(max_length=200)
+    created_at = models.DateTimeField(auto_now_add=True)
+
     def __str__(self):
         return self.title
     
