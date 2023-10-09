@@ -28,7 +28,6 @@ class Courses(models.Model):
     unlist_course = models.BooleanField(blank=True, null=True, default=False)
     
     created_at = models.DateField(auto_now_add=True, null=True, blank=True)
-    video = models.CharField(max_length=200, blank=True, null=True)
     
     # payment
     stripe_product_id = models.CharField(max_length=255, blank=True, null=True)
@@ -43,7 +42,7 @@ class Courses(models.Model):
 
 class CourseVideo(models.Model):
     course = models.ForeignKey(Courses, on_delete=models.CASCADE)
-    video_url = models.URLField()
+    video_url = models.CharField(max_length=500, blank=True, null=True)
     title = models.CharField(max_length=200)
     created_at = models.DateTimeField(auto_now_add=True)
 
