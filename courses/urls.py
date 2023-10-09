@@ -7,6 +7,7 @@ router.register('review', ReviewViewSet, basename='review_view')
 router.register('cartItem', CartItemViewSet, basename='cartItem_view')
 router.register('category', CategoryViewSet, basename='category_view')
 router.register('bought_courses', CoursesBoughtViewSet, basename='bought_courses')
+router.register('course_video', CourseVideoViewSet, basename='course_video')
 
 urlpatterns = [
     

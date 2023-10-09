@@ -28,6 +28,7 @@ class Courses(models.Model):
     unlist_course = models.BooleanField(blank=True, null=True, default=False)
     
     created_at = models.DateField(auto_now_add=True, null=True, blank=True)
+    video = models.CharField(max_length=200, blank=True, null=True)
     
     # payment
     stripe_product_id = models.CharField(max_length=255, blank=True, null=True)
