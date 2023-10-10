@@ -34,3 +34,9 @@ class CourseVideosSerializer(ModelSerializer):
     class Meta:
         fields = '__all__'
         model = CourseVideo
+        
+        
+class CourseLessonProgressSerializer(ModelSerializer):
+    class Meta:
+        fields = '__all__'
+        model = CourseLessonProgress

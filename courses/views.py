@@ -60,3 +60,8 @@ class CoursesBoughtViewSet(ModelViewSet):
 class CourseVideoViewSet(ModelViewSet):
     serializer_class = CourseVideosSerializer
     queryset = CourseVideo.objects.all()
+    
+    
+class CourseLessonProgressViewSet(ModelViewSet):
+    serializer_class = CourseLessonProgressSerializer
+    queryset = CourseLessonProgress.objects.all()
