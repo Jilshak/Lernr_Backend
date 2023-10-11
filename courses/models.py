@@ -89,6 +89,7 @@ class CartItem(models.Model):
 class CoursesBought(models.Model):
     user = models.ForeignKey(CustomUser, on_delete=models.CASCADE)
     course_id = models.ForeignKey(Courses, on_delete=models.CASCADE)
+    progress = models.PositiveIntegerField(blank=True, null=True, default=0)
     created_at = models.DateField(auto_now_add=True, blank=True, null=True)
 
     def __str__(self):
