@@ -28,7 +28,7 @@ class Courses(models.Model):
         Category, on_delete=models.CASCADE, blank=True, null=True)
     course_length = models.DecimalField(
         blank=True, null=True, decimal_places=2, max_digits=5)
-    minor_description = models.CharField(max_length=300, blank=True, null=True)
+    finished = models.BooleanField(default=False)
     what_you_learn = models.TextField(blank=True, null=True)
     offer_price = models.CharField(blank=True, null=True, max_length=200)
     unlist_course = models.BooleanField(blank=True, null=True, default=False)
@@ -40,6 +40,10 @@ class Courses(models.Model):
 
     # requirements
     requirements = models.TextField(blank=True, null=True)
+    
+    # quiz
+    have_quiz = models.BooleanField(blank=True, null=True, default=False)
+    quiz_completed = models.BooleanField(blank=True, null=True, default=False)
 
     course_by = models.ForeignKey(CustomUser, on_delete=models.CASCADE)
 
@@ -90,6 +94,8 @@ class CoursesBought(models.Model):
     user = models.ForeignKey(CustomUser, on_delete=models.CASCADE)
     course_id = models.ForeignKey(Courses, on_delete=models.CASCADE)
     progress = models.PositiveIntegerField(blank=True, null=True, default=0)
+    got_certificate = models.BooleanField(blank=True, null=True, default=False)
+    marks_obtained = models.PositiveIntegerField(blank=True, null=True, default=0)
     created_at = models.DateField(auto_now_add=True, blank=True, null=True)
 
     def __str__(self):
@@ -105,3 +111,15 @@ class CoursesBought(models.Model):
                 lesson=lesson,
                 progress=0
             )
+            
+class Quiz(models.Model):
+    course = models.ForeignKey(Courses, on_delete=models.CASCADE)
+    question = models.CharField(max_length=500, blank=True, null=True)
+    option1 = models.CharField(max_length=200, blank=True, null=True)
+    option2 = models.CharField(max_length=200, blank=True, null=True)
+    option3 = models.CharField(max_length=200, blank=True, null=True)
+    option4 = models.CharField(max_length=200, blank=True, null=True)
+    correct_anwer = models.PositiveIntegerField(blank=True, null=True)
+    
+    def __str__(self):
+        return self.question

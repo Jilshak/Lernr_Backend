@@ -65,3 +65,8 @@ class CourseVideoViewSet(ModelViewSet):
 class CourseLessonProgressViewSet(ModelViewSet):
     serializer_class = CourseLessonProgressSerializer
     queryset = CourseLessonProgress.objects.all()
+
+
+class QuizViewSet(ModelViewSet):
+    serializer_class = QuizSerializer
+    queryset = Quiz.objects.all()

@@ -9,6 +9,7 @@ router.register('category', CategoryViewSet, basename='category_view')
 router.register('bought_courses', CoursesBoughtViewSet, basename='bought_courses')
 router.register('course_video', CourseVideoViewSet, basename='course_video')
 router.register('course_lessons', CourseLessonProgressViewSet, basename='course_lesson_progress')
+router.register('quiz', QuizViewSet, basename='quiz')
 
 urlpatterns = [
     

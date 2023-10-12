@@ -40,3 +40,9 @@ class CourseLessonProgressSerializer(ModelSerializer):
     class Meta:
         fields = '__all__'
         model = CourseLessonProgress
+        
+        
+class QuizSerializer(ModelSerializer):
+    class Meta:
+        fields = '__all__'
+        model = Quiz
