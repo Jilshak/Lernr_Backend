@@ -24,7 +24,7 @@ def create_payment_session(request):
 
         try:
             payment_intent = stripe.PaymentIntent.create(
-                amount=price.data[0].unit_amount,
+                amount=price.data[0].unit_amount * 100,
                 currency=price.data[0].currency,
                 payment_method_types=['card'],
                 description=f'Payment for course: {course.title}',
@@ -91,7 +91,7 @@ def create_cart_payment_session(request):
                 price = price_list.data[0]
                 prices.append(price)
 
-        total_amount = sum(price.unit_amount for price in prices)
+        total_amount = sum(price.unit_amount for price in prices) * 100
 
         stripe.api_key = settings.STRIPE_SECRET_KEY
 

@@ -42,8 +42,8 @@ class Courses(models.Model):
     requirements = models.TextField(blank=True, null=True)
     
     # quiz
-    have_quiz = models.BooleanField(blank=True, null=True, default=False)
-    quiz_completed = models.BooleanField(blank=True, null=True, default=False)
+    # have_quiz = models.BooleanField(blank=True, null=True, default=False)
+    # quiz_completed = models.BooleanField(blank=True, null=True, default=False)
 
     course_by = models.ForeignKey(CustomUser, on_delete=models.CASCADE)
 
