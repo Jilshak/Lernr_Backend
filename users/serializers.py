@@ -31,3 +31,6 @@ class ChangePasswordSerializer(serializers.Serializer):
             raise ValidationError("Old password is incorrect.")
         return value
     
+
+class PasswordResetSerializer(serializers.Serializer):
+    email = serializers.EmailField()

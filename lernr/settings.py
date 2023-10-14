@@ -192,6 +192,16 @@ CORS_ALLOW_ALL_ORIGINS = True
 AUTH_USER_MODEL = "users.CustomUser"
 
 
+EMAIL_BACKEND = 'django.core.mail.backends.smtp.EmailBackend'
+EMAIL_USE_TLS = True
+EMAIL_HOST = 'smtp.gmail.com'
+EMAIL_PORT = 587
+EMAIL_HOST_USER = 'mohd.jilshak@gmail.com'
+EMAIL_HOST_PASSWORD = 'juag tqmv euqu nroo'
+EMAIL_FROM = 'mohd.jilshak@gmail.com'
+
+
+
 SITE_URL = 'http://localhost:5173/'
 
 STRIPE_SECRET_KEY = 'sk_test_51NviVdSGOR1waZmR2aNwRVSYDZ3FdeGmzlLT8sGHL11qmRokKX6x8mhf9I18JnmkeMQ3wGJu8zUu9pTdgtZP0DoR00GCSUTJ7q'
