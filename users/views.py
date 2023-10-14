@@ -17,6 +17,7 @@ class MyTokenObtainPairSerializer(TokenObtainPairSerializer):
         token['is_superuser'] = user.is_superuser
         token['is_instructor'] = user.is_instructor
         token['is_blocked'] = user.is_blocked
+        token['username'] = user.username
         return token
     
 class MyTokenObtainPairView(TokenObtainPairView):
