@@ -32,6 +32,8 @@ class Courses(models.Model):
     what_you_learn = models.TextField(blank=True, null=True)
     offer_price = models.CharField(blank=True, null=True, max_length=200)
     unlist_course = models.BooleanField(blank=True, null=True, default=False)
+    
+    have_quiz = models.BooleanField(default=False, blank=True, null=True)
 
     created_at = models.DateField(auto_now_add=True, null=True, blank=True)
 
