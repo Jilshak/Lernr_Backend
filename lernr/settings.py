@@ -1,7 +1,7 @@
 from pathlib import Path
+import os
 from datetime import timedelta
 from django.conf import settings
-import os
 from decouple import config
 
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
@@ -79,7 +79,7 @@ CHANNEL_LAYERS = {
     "default": {
         "BACKEND": "channels_redis.core.RedisChannelLayer",
         "CONFIG": {
-            "hosts": [("localhost", 6379)],
+            "hosts": [(config('redis'))],
         },
     },
 }
