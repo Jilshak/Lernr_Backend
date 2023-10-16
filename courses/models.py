@@ -56,6 +56,7 @@ class Courses(models.Model):
 class CourseVideo(models.Model):
     course = models.ForeignKey(Courses, on_delete=models.CASCADE)
     video_url = models.CharField(max_length=500, blank=True, null=True)
+    video_ref = models.CharField(max_length=1000, blank=True, null=True)
     title = models.CharField(max_length=200)
     created_at = models.DateTimeField(auto_now_add=True)
 
